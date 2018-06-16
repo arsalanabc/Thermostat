@@ -3,6 +3,9 @@
 <head>
 	<title>Thermostat</title>
 	<script src="src/Thermostat.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="js/interface_jquery.js"></script>
+
 
 </head>
 <body>
@@ -20,7 +23,7 @@
 		<tr align="center">
 			
 				<td id='set_temp'>set temperature</td>
-				<td id="power_saving" onclick="powersavetoggle()">powersaving mode</td>
+				<td id="power_saving">powersaving mode</td>
 			
 		</tr>
 	</table>
@@ -29,48 +32,17 @@
 	<table border="1" align="center">
 		<tr>
 			<td> 
-				<button onclick="decrease_temp()"> - </button>
+				<button onclick="$(this).decrease_temp()"> - </button>
 			</td>
-			<td onclick="reset()">reset</td>
-			<td> <button onclick="increase_temp()"> + </button> </td>
+			<td id="reset">reset</td>
+			<td> <button onclick="$(this).increase_temp()"> + </button> </td>
 		</tr>
 	</table>
 </div>
 
 
-	<script type="text/javascript">	
-		var thermostat = new Thermostat();
-
-		document.getElementById("room_temp").innerHTML = Math.floor(Math.random()*10 + 18);
-
-		update()
-
-		function reset(){
-			thermostat.reset();
-			update()
-		}
-
-		function increase_temp(){
-			thermostat.up(1);
-			update()
-		}
+<!-- <script src="js/interface_js.js"></script> -->
 
 
-		function decrease_temp(){
-			thermostat.down(1);
-			update()
-		}
-
-		function powersavetoggle(){
-			if (thermostat.powersaving()){ thermostat.powersavingoff()}
-			else if (!thermostat.powersaving()){ thermostat.powersavingon()}
-			update()
-		}
-
-		function update(){
-			document.getElementById("set_temp").innerHTML = thermostat.temperature();
-			document.getElementById("power_saving").innerHTML = "powersave: "+thermostat.powersaving();
-		}
-	</script>
 </body>
 </html>
