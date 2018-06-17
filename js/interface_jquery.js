@@ -11,6 +11,19 @@ $(document).ready(function(){
 
 	$.fn.update = function(){
 		$("#set_temp").text( thermostat.temperature() );
+		const usage = thermostat.usage();
+		switch(usage) {
+		case 'low-usage':
+			$('#thermostat').css('background-color', 'green');
+			break
+		case 'medium-usage':
+			$('#thermostat').css('background-color', 'orange');
+			break
+		case 'high-usage':
+			$('#thermostat').css('background-color', 'red');
+			break
+		}
+
 	};
 
 	$.fn.decrease_temp = function(){
